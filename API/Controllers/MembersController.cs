@@ -1,5 +1,7 @@
-﻿using Domain.Entites;
+﻿
+using Domain.Entites;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,11 +20,13 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
 
       public async Task<ActionResult<AppUsers>> GetById(string  id)
     {
         var users =  await _context.Users.FindAsync(id);
         return users;
+
     }
 
 }
